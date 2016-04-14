@@ -4,13 +4,13 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'task_manager/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "task_manager"
+  spec.name          = "task_manager2"
   spec.version       = TaskManager::VERSION
   spec.authors       = ["MatBi"]
   spec.email         = ["leminhducktvn@gmail.com"]
 
   spec.summary       = %q{A simple task manager in console}
-  spec.description   = %q{A simple task manager in console}
+  spec.description   = %q{A simple task manager in console, stored using XML}
   spec.homepage      = "https://github.com/lmduc/task_manager"
   spec.license       = "MIT"
 
