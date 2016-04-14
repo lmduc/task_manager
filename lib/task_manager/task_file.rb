@@ -74,5 +74,9 @@ module TaskManager
     def save_xml
       File.open(FILE_NAME, 'w') { |f| f.write(xml.to_s) }
     end
+
+    def time_now
+      Time.now
+    end
   end
 end

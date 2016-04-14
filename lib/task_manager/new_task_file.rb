@@ -21,7 +21,7 @@ module TaskManager
 
     def create_node(task)
       node = super
-      node['created_at'] = Time.current
+      node['created_at'] = time_now
       node
     end
   end
