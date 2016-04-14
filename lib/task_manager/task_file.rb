@@ -16,6 +16,14 @@ module TaskManager
       end
     end
 
+    def all
+      root_node.css(ELEMENT).map do |node|
+        task = Task.new(node['name'], node['score'])
+        task.id = node['id']
+        task
+      end
+    end
+
     protected
 
     def create_node(task)

@@ -1,7 +1,7 @@
 module TaskManager
   class NewTaskFile < TaskFile
     def pick(id)
-      node = root_node.css('task').find { |t| t['id'] == id }
+      node = root_node.css('task').find { |t| t['id'].to_i == id }
       task = Task.new(node['name'], node['score'])
       handle_xml { node.remove }
       task

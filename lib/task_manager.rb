@@ -33,17 +33,17 @@ module TaskManager
 
   def self.stats
     print('Waiting tasks:')
-    NewTaskFile.all.each do |task|
+    NewTaskFile.new.all.each do |task|
       print(format(task))
     end
 
     print('Current task:')
-    CurrentTaskFile.all.each do |task|
+    CurrentTaskFile.new.all.each do |task|
       print(format(task))
     end
 
     print('Done tasks:')
-    DoneTaskFile.all.each do |task|
+    DoneTaskFile.new.all.each do |task|
       print(format(task))
     end
   end
@@ -55,6 +55,6 @@ module TaskManager
   end
 
   def self.format(task)
-    "#{task.name} - #{task.score}"
+    "#{task.id}: #{task.name} - #{task.score}"
   end
 end
