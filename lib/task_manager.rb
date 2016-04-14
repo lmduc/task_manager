@@ -8,11 +8,13 @@ module TaskManager
   def self.add(name, score = 0)
     task = Task.new(name, score)
     NewTaskFile.new.add(task)
+    print("Added new task: #{format(task)}")
   end
 
   def self.pick(id)
     task = NewTaskFile.new.pick(id)
     CurrentTaskFile.new.add(task)
+    print("Picked task: #{format(task)}")
   end
 
   def self.current
@@ -23,6 +25,7 @@ module TaskManager
   def self.finish
     task = CurrentTaskFile.new.pick
     DoneTaskFile.new.add(task)
+    print("Finished task: #{format(task)}")
   end
 
   def self.stats
@@ -49,6 +52,6 @@ module TaskManager
   end
 
   def format(task)
-    "#{task.id}: #{task.name} - #{task.score}"
+    "#{task.name} - #{task.score}"
   end
 end
