@@ -11,6 +11,8 @@ require 'task_manager/done_task_file'
 
 require 'task_manager/format'
 
+require 'task_manager/cli'
+
 module TaskManager
   def self.add(name, score = 0)
     task = NewTaskFile.new.add(Task.new(name, score))

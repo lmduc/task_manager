@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+require 'task_manager'
+
+TaskManager::Cli.start(ARGV)
