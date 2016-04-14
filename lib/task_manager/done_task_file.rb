@@ -1,5 +1,11 @@
 module TaskManager
   class DoneTaskFile < TaskFile
+    DEFAULT_NO_RESULTS = 15
+
+    def all
+      super.reverse!.first(DEFAULT_NO_RESULTS)
+    end
+
     protected
 
     def root_node

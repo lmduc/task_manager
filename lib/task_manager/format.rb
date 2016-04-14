@@ -1,5 +1,3 @@
-require 'time'
-
 module TaskManager
   class Format
     attr_reader :task
@@ -14,25 +12,19 @@ module TaskManager
     end
 
     def created_at
-      if task.created_at && !task.created_at.empty?
-        "created #{format_time(task.created_at)}"
-      end
+      "created #{format_time(task.created_at)}" if task.created_at
     end
 
     def started_at
-      if task.started_at && !task.started_at.empty?
-        " | started #{format_time(task.started_at)}"
-      end
+      " | started #{format_time(task.started_at)}" if task.started_at
     end
 
     def finished_at
-      if task.finished_at && !task.finished_at.empty?
-        " | finished #{format_time(task.finished_at)}"
-      end
+      " | finished #{format_time(task.finished_at)}" if task.finished_at
     end
 
     def format_time(time)
-      Time.parse(time).strftime('%d %^b %Y')
+      time.strftime('%d %^b %Y')
     end
   end
 end
