@@ -8,28 +8,26 @@ module TaskManager
       @task = task
     end
 
-    def output
-      output = <<-OUTPUT
-    #{task.id} - #{task.name}#{created_at}#{started_at}#{finished_at}
-      OUTPUT
-      output.colorize(:light_yellow)
+    def print_output
+      $stdout.puts("    #{task.id}. #{task.name}".colorize(:light_yellow))
+      $stdout.puts("       #{created_at}#{started_at}#{finished_at}".colorize(:light_blue))
     end
 
     def created_at
       if task.created_at && !task.created_at.empty?
-        " - created at #{format_time(task.created_at)}"
+        "created #{format_time(task.created_at)}"
       end
     end
 
     def started_at
       if task.started_at && !task.started_at.empty?
-        " - started at #{format_time(task.started_at)}"
+        " | started #{format_time(task.started_at)}"
       end
     end
 
     def finished_at
       if task.finished_at && !task.finished_at.empty?
-        " - finished at #{format_time(task.finished_at)}"
+        " | finished #{format_time(task.finished_at)}"
       end
     end
 

@@ -10,10 +10,9 @@ module TaskManager
     DONE_NODE    = 'done_tasks'.freeze
 
     def add(task)
-      handle_xml do
-        node = create_node(task)
-        root_node.add_child(node)
-      end
+      node = create_node(task)
+      handle_xml { root_node.add_child(node) }
+      Task.new_from_node(node)
     end
 
     def all

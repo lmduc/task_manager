@@ -13,8 +13,7 @@ require 'task_manager/format'
 
 module TaskManager
   def self.add(name, score = 0)
-    task = Task.new(name, score)
-    NewTaskFile.new.add(task)
+    task = NewTaskFile.new.add(Task.new(name, score))
     print('Added new task:'.colorize(:light_cyan))
     print_task(task)
   end
@@ -44,11 +43,13 @@ module TaskManager
     NewTaskFile.new.all.each do |task|
       print_task(task)
     end
+    print('')
 
     print('Current task:'.colorize(:light_cyan))
     CurrentTaskFile.new.all.each do |task|
       print_task(task)
     end
+    print('')
 
     print('Done tasks:'.colorize(:light_cyan))
     DoneTaskFile.new.all.each do |task|
@@ -63,6 +64,6 @@ module TaskManager
   end
 
   def self.print_task(task)
-    print Format.new(task).output
+    Format.new(task).print_output
   end
 end
