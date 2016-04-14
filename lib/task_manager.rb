@@ -3,6 +3,9 @@ require 'task_manager/version'
 require 'task_manager/task'
 
 require 'task_manager/task_file'
+require 'task_manager/new_task_file'
+require 'task_manager/current_task_file'
+require 'task_manager/done_task_file'
 
 module TaskManager
   def self.add(name, score = 0)
@@ -51,7 +54,7 @@ module TaskManager
     $stdout.puts sentence
   end
 
-  def format(task)
+  def self.format(task)
     "#{task.name} - #{task.score}"
   end
 end

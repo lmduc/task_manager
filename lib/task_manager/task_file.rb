@@ -1,9 +1,5 @@
 require 'nokogiri'
 
-require 'task_manager/new_task_file'
-require 'task_manager/current_task_file'
-require 'task_manager/done_task_file'
-
 module TaskManager
   class TaskFile
     FILE_NAME    = '.task'.freeze
