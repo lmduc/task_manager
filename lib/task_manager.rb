@@ -1,3 +1,5 @@
+require 'colorize'
+
 require 'task_manager/version'
 
 require 'task_manager/task'
@@ -7,44 +9,50 @@ require 'task_manager/new_task_file'
 require 'task_manager/current_task_file'
 require 'task_manager/done_task_file'
 
+require 'task_manager/format'
+
 module TaskManager
   def self.add(name, score = 0)
     task = Task.new(name, score)
     NewTaskFile.new.add(task)
-    print("Added new task: #{format(task)}")
+    print('Added new task:'.colorize(:light_cyan))
+    print_task(task)
   end
 
   def self.pick(id)
     task = NewTaskFile.new.pick(id)
     CurrentTaskFile.new.add(task)
-    print("Picked task: #{format(task)}")
+    print('Picked task:'.colorize(:light_cyan))
+    print_task(task)
   end
 
   def self.current
     task = CurrentTaskFile.new.current
-    print("Current task: #{format(task)}")
+    print('Current task:'.colorize(:light_cyan))
+    print_task(task)
   end
 
   def self.finish
     task = CurrentTaskFile.new.pick
     DoneTaskFile.new.add(task)
-    print("Finished task: #{format(task)}")
+    print('Finished task:'.colorize(:light_green))
+    print_task(task)
   end
 
   def self.stats
-    print('Waiting tasks:')
+    print('Waiting tasks:'.colorize(:light_cyan))
     NewTaskFile.new.all.each do |task|
-      print(format(task))
+      print_task(task)
     end
 
-    print('Current task:')
+    print('Current task:'.colorize(:light_cyan))
     CurrentTaskFile.new.all.each do |task|
-      print(format(task))
+      print_task(task)
     end
 
-    print('Done tasks:')
+    print('Done tasks:'.colorize(:light_cyan))
     DoneTaskFile.new.all.each do |task|
-      print(format(task))
+      print_task(task)
     end
   end
 
@@ -54,7 +62,7 @@ module TaskManager
     $stdout.puts sentence
   end
 
-  def self.format(task)
-    "#{task.id}: #{task.name} - #{task.score}"
+  def self.print_task(task)
+    print Format.new(task).output
   end
 end

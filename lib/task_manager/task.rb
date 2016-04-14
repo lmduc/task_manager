@@ -14,6 +14,7 @@ module TaskManager
 
     def self.new_from_node(node)
       task = Task.new
+      task.id          = node['id']
       task.name        = node['name']
       task.score       = node['score']
       task.created_at  = node['created_at']

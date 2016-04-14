@@ -18,9 +18,7 @@ module TaskManager
 
     def all
       root_node.css(ELEMENT).map do |node|
-        task = Task.new(node['name'], node['score'])
-        task.id = node['id']
-        task
+        Task.new_from_node(node)
       end
     end
 
@@ -42,7 +40,7 @@ module TaskManager
     end
 
     def highest_id
-      root_node.css('id').map(&:to_i).max || 0
+      root_node.css(ELEMENT).map { |node| node['id'] }.map(&:to_i).max || 0
     end
 
     def xml
