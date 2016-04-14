@@ -11,5 +11,11 @@ module TaskManager
         end
       end
     end
+
+    def create_node(task)
+      node = super
+      node['finished_at'] = Time.current
+      node
+    end
   end
 end

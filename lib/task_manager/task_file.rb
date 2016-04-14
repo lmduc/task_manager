@@ -31,6 +31,9 @@ module TaskManager
       node['id']    = new_id
       node['name']  = task.name
       node['score'] = task.score
+      node['created_at'] = task.created_at
+      node['started_at'] = task.started_at
+      node['finished_at'] = task.finished_at
       node
     end
 

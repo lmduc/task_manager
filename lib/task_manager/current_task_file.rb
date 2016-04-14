@@ -1,7 +1,7 @@
 module TaskManager
   class CurrentTaskFile < TaskFile
     def current
-      Task.new(current_node['name'], current_node['score'])
+      Task.new_from_node(current_node)
     end
 
     def pick
@@ -24,6 +24,12 @@ module TaskManager
           node
         end
       end
+    end
+
+    def create_node(task)
+      node = super
+      node['started_at'] = Time.current
+      node
     end
   end
 end

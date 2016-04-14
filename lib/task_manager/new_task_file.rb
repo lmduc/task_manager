@@ -2,7 +2,7 @@ module TaskManager
   class NewTaskFile < TaskFile
     def pick(id)
       node = root_node.css('task').find { |t| t['id'].to_i == id }
-      task = Task.new(node['name'], node['score'])
+      task = Task.new_from_node(node)
       handle_xml { node.remove }
       task
     end
@@ -17,6 +17,12 @@ module TaskManager
           node
         end
       end
+    end
+
+    def create_node(task)
+      node = super
+      node['created_at'] = Time.current
+      node
     end
   end
 end
