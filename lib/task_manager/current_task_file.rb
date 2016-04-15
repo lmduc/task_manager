@@ -1,5 +1,10 @@
 module TaskManager
   class CurrentTaskFile < TaskFile
+    def add(task)
+      raise "You haven't finished the current task".colorize(:light_red)
+      super
+    end
+
     def current
       Task.new_from_node(current_node)
     end
