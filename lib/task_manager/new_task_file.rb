@@ -1,8 +1,8 @@
 module TaskManager
   class NewTaskFile < TaskFile
     def pick(id)
-      node = root_node.css('task').find { |t| t['id'].to_i == id }
-      raise 'ID not exists'.colorize(:light_red)
+      node = root_node.css('task').find { |t| t['id'].to_i == id.to_i }
+      raise 'ID not exists'.colorize(:light_red) unless node
       task = Task.new_from_node(node)
       handle_xml { node.remove }
       task
