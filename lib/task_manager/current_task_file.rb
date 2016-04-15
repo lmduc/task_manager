@@ -1,7 +1,7 @@
 module TaskManager
   class CurrentTaskFile < TaskFile
     def add(task)
-      raise "You haven't finished the current task".colorize(:light_red)
+      raise "You haven't finished the current task".colorize(:light_red) if current_node
       super
     end
 
