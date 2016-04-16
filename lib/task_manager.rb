@@ -21,11 +21,13 @@ module TaskManager
   end
 
   def self.pick(id)
-    NewTaskFile.new.pick(id) do |task|
+    task = NewTaskFile.new.pick(id) do |task|
       CurrentTaskFile.new.add(task)
     end
     print('Picked task:'.colorize(:light_cyan))
     print_task(task)
+  rescue Exception => e
+    print e.message
   end
 
   def self.current
