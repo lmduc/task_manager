@@ -6,6 +6,7 @@ module TaskManager
     end
 
     def current
+      raise "You don't have any current task".colorize(:light_red) unless current_node
       Task.new_from_node(current_node)
     end
 

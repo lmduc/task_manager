@@ -34,6 +34,8 @@ module TaskManager
     task = CurrentTaskFile.new.current
     print('Current task:'.colorize(:light_cyan))
     print_task(task)
+  rescue Exception => e
+    print e.message
   end
 
   def self.finish
