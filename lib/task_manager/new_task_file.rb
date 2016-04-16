@@ -4,6 +4,7 @@ module TaskManager
       node = root_node.css('task').find { |t| t['id'].to_i == id.to_i }
       raise 'ID not exists'.colorize(:light_red) unless node
       task = Task.new_from_node(node)
+      yield(task) if block_given?
       handle_xml { node.remove }
       task
     end

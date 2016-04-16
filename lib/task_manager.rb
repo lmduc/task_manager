@@ -21,8 +21,9 @@ module TaskManager
   end
 
   def self.pick(id)
-    task = NewTaskFile.new.pick(id)
-    CurrentTaskFile.new.add(task)
+    NewTaskFile.new.pick(id) do |task|
+      CurrentTaskFile.new.add(task)
+    end
     print('Picked task:'.colorize(:light_cyan))
     print_task(task)
   end
