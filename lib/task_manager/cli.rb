@@ -17,6 +17,12 @@ module TaskManager
       TaskManager.pick(options[:id])
     end
 
+    desc 'delete', 'Delete a task from the waiting queue'
+    method_option :id, aliases: '-i', desc: 'ID of the task', type: :numeric, required: true
+    def delete
+      TaskManager.delete(options[:id])
+    end
+
     desc 'current', 'Current task'
     def current
       TaskManager.current

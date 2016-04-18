@@ -30,6 +30,14 @@ module TaskManager
     print e.message
   end
 
+  def self.delete(id)
+    task = NewTaskFile.new.delete(id)
+    print('Deleted task:'.colorize(:light_cyan))
+    print_task(task)
+  rescue Exception => e
+    print e.message
+  end
+
   def self.current
     task = CurrentTaskFile.new.current
     print('Current task:'.colorize(:light_cyan))

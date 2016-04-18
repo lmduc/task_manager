@@ -44,7 +44,7 @@ module TaskManager
     end
 
     def xml
-      @xml ||= begin
+      @@xml ||= begin
         create_file(FILE_NAME) unless File.exists?(FILE_NAME)
         File.open(FILE_NAME, 'r') { |f| Nokogiri::XML(f) }
       end
