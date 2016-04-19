@@ -17,6 +17,11 @@ module TaskManager
       TaskManager.pick(options[:id])
     end
 
+    desc 'undo', 'Undo the current task, put it back to the waiting queue'
+    def undo
+      TaskManager.undo
+    end
+
     desc 'delete', 'Delete a task from the waiting queue'
     method_option :id, aliases: '-i', desc: 'ID of the task', type: :numeric, required: true
     def delete

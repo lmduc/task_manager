@@ -30,6 +30,15 @@ module TaskManager
     print e.message
   end
 
+  def self.undo
+    task = CurrentTaskFile.new.pick
+    NewTaskFile.new.add(task)
+    print('Undid task:'.colorize(:light_cyan))
+    print_task(task)
+  rescue Exception => e
+    print e.message
+  end
+
   def self.delete(id)
     task = NewTaskFile.new.delete(id)
     print('Deleted task:'.colorize(:light_cyan))
@@ -51,6 +60,8 @@ module TaskManager
     DoneTaskFile.new.add(task)
     print('Finished task:'.colorize(:light_green))
     print_task(task)
+  rescue Exception => e
+    print e.message
   end
 
   def self.finish_with_id(id)
