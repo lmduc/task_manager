@@ -53,6 +53,16 @@ module TaskManager
     print_task(task)
   end
 
+  def self.finish_with_id(id)
+    task = NewTaskFile.new.pick(id) do |task|
+      DoneTaskFile.new.add(task)
+    end
+    print('Finished task:'.colorize(:light_green))
+    print_task(task)
+  rescue Exception => e
+    print e.message
+  end
+
   def self.stats
     print('Waiting tasks:'.colorize(:light_cyan))
     NewTaskFile.new.all.each do |task|

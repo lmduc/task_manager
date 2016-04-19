@@ -28,9 +28,14 @@ module TaskManager
       TaskManager.current
     end
 
-    desc 'finish', 'Finish the current task'
+    desc 'finish', 'Finish the current task or finish the task with ID in the waiting queue'
+    method_option :id, aliases: '-i', desc: 'ID of the task', type: :numeric
     def finish
-      TaskManager.finish
+      if options[:id]
+        TaskManager.finish_with_id(options[:id])
+      else
+        TaskManager.finish
+      end
     end
 
     desc 'stats', 'Statistics of all queues'
